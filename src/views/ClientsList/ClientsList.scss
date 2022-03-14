@@ -1,0 +1,31 @@
+@use '../../sass/responsive';
+
+.clients-list-container {
+  width: 100%;
+  min-height: 20rem;
+  padding: 0 10rem;
+  box-sizing: border-box;
+  .panel {
+    width: 100%;
+    height: 4rem;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    .label {
+      color: #fff;
+      font-size: 1.2rem;
+      margin-right: 1rem;
+    }
+    .search-input {
+      all: unset;
+      background: #fff;
+      padding: .2rem .5rem;
+      border-radius: .2rem;
+      &:focus {
+        box-shadow: 0 0 .25rem #fff;
+      }
+    }
+  }
+}
+
+@include responsive.list();

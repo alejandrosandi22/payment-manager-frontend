@@ -1,0 +1,7 @@
+@mixin list {
+  @media (max-width: 1024px) {
+    .clients-list-container {
+      padding: 0;
+    }
+  }
+}
