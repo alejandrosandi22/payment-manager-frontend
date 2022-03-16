@@ -70,6 +70,10 @@
         &:hover {
           filter: brightness(110%);
         }
+        .fa-spinner-third {
+          animation: spinner 2s infinite;
+          margin-left: .5rem;
+        }
       }
     }
   }
@@ -127,5 +131,14 @@
   }
   100% {
     transform: scale(0);
+  }
+}
+
+@keyframes spinner {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
   }
 }
