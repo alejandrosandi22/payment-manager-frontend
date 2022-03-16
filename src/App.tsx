@@ -9,6 +9,7 @@ import Client from './views/Client/Client';
 function App() {
   let [ init, setInit ] = useState<boolean>(false);
   let [ toggle, setToggle ] = useState<boolean>(false);
+  let [ update, setUpdate ] = useState<boolean>(false);
 
   const modalEvents = () => {
     setInit(init = true);
@@ -17,10 +18,15 @@ function App() {
     else setToggle(toggle = true);
   }
 
+  const handleUpdate = () => {
+    if (update) setUpdate(false);
+    else setUpdate(true);
+  }
+
   return (
     <BrowserRouter>
     <div className='App'>
-    <Add toggle={toggle} init={init} modalEvents={modalEvents} />
+    <Add toggle={toggle} init={init} modalEvents={modalEvents} update={update} />
       <Nav modalEvents={modalEvents} />
       <Routes>
         <Route path='/' element={<ClientsList />}/>
