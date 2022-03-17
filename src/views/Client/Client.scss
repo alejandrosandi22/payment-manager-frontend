@@ -15,20 +15,19 @@
     height: 20rem;
     padding: 0 2rem;
     box-sizing: border-box;
-    background: rgba(180, 165, 165, .1);
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
+    background: #353535;
     .name {
-      color: #fff;
+      color: #F6F6F6;
       font-size: 2.2rem;
       font-weight: 500;
     }
     .days-left, .last-update-date, .last-update-payment {
-      color: #fff;
+      color: #F6F6F6;
       font-size: 1.5rem;
       font-weight: 500;
-
     }
   }
 }

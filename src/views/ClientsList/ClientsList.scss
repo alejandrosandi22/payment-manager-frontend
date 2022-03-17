@@ -12,17 +12,17 @@
     justify-content: end;
     align-items: center;
     .label {
-      color: #fff;
+      color: #F6F6F6;
       font-size: 1.2rem;
       margin-right: 1rem;
     }
     .search-input {
       all: unset;
-      background: #fff;
+      background: #F6F6F6;
       padding: .2rem .5rem;
       border-radius: .2rem;
       &:focus {
-        box-shadow: 0 0 .25rem #fff;
+        box-shadow: 0 0 .25rem #F6F6F6;
       }
     }
   }

@@ -32,8 +32,8 @@ function App() {
     <Add handleEvent={handleEvent} toggle={toggle} init={init} modalEvents={modalEvents} update={update} />
       <Nav modalEvents={modalEvents} />
       <Routes>
+        <Route path='/client/:id' element={<Client />}/>
         <Route path='/' element={<ClientsList handleEvent={handleEvent} eventEmitted={eventEmitted} />}/>
-        <Route path='/clients' element={<Client />}/>
       </Routes>
     </div>
     </BrowserRouter>

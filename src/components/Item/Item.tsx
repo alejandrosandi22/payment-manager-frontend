@@ -1,37 +1,21 @@
 import React, { useEffect, useState } from 'react';
 import './Item.scss';
 import moment from 'moment';
+import { Link } from 'react-router-dom';
+import { format } from '../../services/daysLeft';
 
 export default function Item(props: any) {
 
   const [ daysLeft, setDaysLeft ] = useState<string>('days');
 
   useEffect(() => {
-    const updateDay = moment(props.date).format("YYYY-MM-d");
-    const today = moment(new Date()).format("YYYY-MM-d");
-
-    const diff: number = moment(today).diff(moment(updateDay), 'month', true);
-    
-    if (props.payment === 10000) {
-      if ((30 - Math.trunc(diff * 30)) <= 0) return setDaysLeft('Expired monthly payment');
-      else return setDaysLeft(`${30 - Math.trunc(diff * 30)} days`);
-    }
-
-    if (props.payment === 5000) {
-      if (Math.trunc(diff * 30) > 16) return setDaysLeft('Expired monthly payment');
-      else return setDaysLeft(`${14 - Math.trunc(diff * 30)} days`);
-    }
-
-    if (props.payment === 3000) {
-      if (Math.trunc(diff * 30) > 8) return setDaysLeft('Expired monthly payment');
-      else return setDaysLeft(`${7 - Math.trunc(diff * 30)} days`);
-    }
+    format(setDaysLeft, props);
   }, [])
 
   return (
     <div className='item-container'>
       <div className='client'>
-        <h3 className='name'>{ props.name }</h3>
+        <Link className='name' to={`/client/${props.id}`}>{ props.name }</Link>
         <h4 className='days-left'>{ daysLeft }</h4>
       </div>
       <div className='actions'>

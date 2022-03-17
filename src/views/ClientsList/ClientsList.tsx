@@ -7,12 +7,12 @@ interface clientType {name: string, id: number, date: Date, payment: number}
 export default function ClientsList(props: any) {
 
   const [ listClients, setListClients ] = useState<JSX.Element>(<Item/>);
-  const [ findedClients, setFindedClients ] = useState<any>([]);
-  const clients = useRef<Array<object>>([])
+  const clients = useRef<Array<object>>([]);
+  
+  let [ findedClients, setFindedClients ] = useState<any>([]);
 
  useEffect(() => {
    new Promise( async (res: any) => {
-     console.log('Test')
       const response: Response = await fetch('http://localhost:4000/clients');
       clients.current = await response.json();
       return res(clients);
@@ -35,14 +35,15 @@ export default function ClientsList(props: any) {
 
   const searchClient = (e: any) => {
     const wordToFind: string = e.target.value.toLowerCase();
-    setFindedClients(clients.current.filter((client: any) => {
-      return client.id.includes(wordToFind);
+
+    setFindedClients(findedClients = clients.current.filter((client: any) => {
+      const name: string = client.name.toLowerCase();
+      return client.id.toString().includes(wordToFind) || name.includes(wordToFind);
     }))
 
-    setFindedClients(findedClients.map((client: clientType) => {
+    setFindedClients(findedClients = findedClients.map((client: clientType) => {
       return <Item key={client.id} id={client.id} name={client.name} date={client.date} payment={client.payment} handleDelete={handleDelete} />
     }))
-    console.log(findedClients)
   }
 
   return(
