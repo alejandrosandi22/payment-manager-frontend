@@ -1,3 +1,4 @@
+import moment from 'moment';
 import React, { useRef, useState } from 'react';
 import './Add.scss';
 
@@ -7,7 +8,7 @@ export default function(props: any) {
     id: '',
     name: '',
     payment: '',
-    date: `${new Date().getFullYear()}-${new Date().getMonth()}-${new Date().getDate()}`
+    date: moment().format("YYYY-MM-d")
   });
 
   const [loading, setLoading] = useState<boolean>(false);
@@ -25,11 +26,11 @@ export default function(props: any) {
       headers: { 'Content-Type': 'application/json' }
     })
     const data = await res.json();
-    console.log(data);
     
     setLoading(false);
     form.current.reset();
     props.modalEvents();
+    props.handleEvent();
   }
   
   const handleChange = (e: any) => setClient({...client, [e.target.name]: e.target.value });
