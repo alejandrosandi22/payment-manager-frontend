@@ -10,6 +10,9 @@ function App() {
   let [ init, setInit ] = useState<boolean>(false);
   let [ toggle, setToggle ] = useState<boolean>(false);
   let [ update, setUpdate ] = useState<boolean>(false);
+  const [ eventEmitted, setEventEmitted ] = useState<boolean>(false)
+
+  const handleEvent = () => eventEmitted ? setEventEmitted(false) : setEventEmitted(true);
 
   const modalEvents = () => {
     setInit(init = true);
@@ -26,10 +29,10 @@ function App() {
   return (
     <BrowserRouter>
     <div className='App'>
-    <Add toggle={toggle} init={init} modalEvents={modalEvents} update={update} />
+    <Add handleEvent={handleEvent} toggle={toggle} init={init} modalEvents={modalEvents} update={update} />
       <Nav modalEvents={modalEvents} />
       <Routes>
-        <Route path='/' element={<ClientsList />}/>
+        <Route path='/' element={<ClientsList handleEvent={handleEvent} eventEmitted={eventEmitted} />}/>
         <Route path='/clients' element={<Client />}/>
       </Routes>
     </div>

@@ -30,6 +30,9 @@
       color: #fff;
       font-size: 1.3rem;
       cursor: pointer;
+      &:active {
+        transform: scale(1.1);
+      }
     }
     .form {
       display: flex;
@@ -47,13 +50,9 @@
           font-size: 1rem;
           margin: .5rem 0;
         }
-        input {
+        input, select {
           height: 2rem;
           font-size: 1rem;
-          padding: .2rem .5rem;
-        }
-        select {
-          height: 2rem;
           padding: .2rem .5rem;
         }
       }

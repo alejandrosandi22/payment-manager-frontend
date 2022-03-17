@@ -10,29 +10,23 @@ export default function Item(props: any) {
     const updateDay = moment(props.date).format("YYYY-MM-d");
     const today = moment(new Date()).format("YYYY-MM-d");
 
-    const diff: number = moment(today).diff(moment(updateDay), 'days');
-
+    const diff: number = moment(today).diff(moment(updateDay), 'month', true);
+    
     if (props.payment === 10000) {
-      if (diff < 31) return setDaysLeft('Expired monthly payment');
+      if ((30 - Math.trunc(diff * 30)) <= 0) return setDaysLeft('Expired monthly payment');
+      else return setDaysLeft(`${30 - Math.trunc(diff * 30)} days`);
     }
 
     if (props.payment === 5000) {
-      if (diff < 16) return setDaysLeft('Expired monthly payment');
+      if (Math.trunc(diff * 30) > 16) return setDaysLeft('Expired monthly payment');
+      else return setDaysLeft(`${14 - Math.trunc(diff * 30)} days`);
     }
 
     if (props.payment === 3000) {
-      if (diff < 8) return setDaysLeft('Expired monthly payment');
+      if (Math.trunc(diff * 30) > 8) return setDaysLeft('Expired monthly payment');
+      else return setDaysLeft(`${7 - Math.trunc(diff * 30)} days`);
     }
-
-    setDaysLeft(diff.toString());
-  })
-
-  const handleDelete = async (id: number) => {
-    console.log(id)
-    await fetch(`http://localhost:4000/clients/${id}`, {
-      method: "DELETE",
-    })
-  }
+  }, [])
 
   return (
     <div className='item-container'>
@@ -42,7 +36,7 @@ export default function Item(props: any) {
       </div>
       <div className='actions'>
         <button className='button edit'><i className='fas fa-edit'></i></button>
-        <button onClick={() => handleDelete(props.id)} className='button delete'><i className='fas fa-trash-alt'></i></button>
+        <button onClick={() => props.handleDelete(props.id)} className='button delete'><i className='fas fa-trash-alt'></i></button>
       </div>
     </div>
   )
