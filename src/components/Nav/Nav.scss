@@ -10,10 +10,10 @@
   justify-content: space-between;
   align-items: center;
   box-sizing: border-box;
-  transition: .5s;
+  transition: all .5s;
   .logo {
     font-size: 2rem;
-    color: #fff;
+    color: #F6F6F6;
     font-weight: 400;
     text-transform: uppercase;
   }
@@ -24,29 +24,34 @@
     .list {
       margin: 0 2rem;
       a {
-        color: #fff;
+        color: #F6F6F6;
         font-size: 1.2rem;
       }
     }
     .add {
-      color: #fff;
+      color: #F6F6F6;
       font-weight: 500;
       font-size: 1rem;
       display: flex;
       justify-content: center;
       align-items: center;
-      background: rgb(180, 165, 165, .5);
+      background: #353535;
       border-radius: .5rem;
       width: 8rem;
       height: 3rem;
       cursor: pointer;
       &:hover {
-        background: rgb(180, 165, 165, .3);
+        filter: brightness(85%);
       }
     }
   }
 }
 .scroll {
-  background: #3A3939;
+  background: #353535;
   transition: .5s;
+  ul {
+    .add {
+      background: #1C1C1C;
+    }
+  }
 }

@@ -6,9 +6,9 @@
   display: flex;
   padding: 1rem 2rem;
   box-sizing: border-box;
-  background: rgba(180, 165, 165, .1);
-  border-radius: .5rem;
-  margin: 2rem 0;
+  &:not(:last-child) {
+    border-bottom: 1px solid rgb(151, 151, 151);
+  }
   .client {
     width: 85%;
     height: 100%;
@@ -17,10 +17,10 @@
     justify-content: space-evenly;
     .name {
       font-size: 1.5rem;
-      color: #fff;
+      color: #F6F6F6;
     }
     .days-left {
-      color: #fff;
+      color: #F6F6F6;
       font-size: 1.1rem;
     }
   }
@@ -33,9 +33,10 @@
     flex-direction: column;
     .button {
       @include mixin.button();
+      background: #0B67C3;
     }
     .delete {
-      background: #e70000;
+      background: #FF4158;
     }
   }
 }
