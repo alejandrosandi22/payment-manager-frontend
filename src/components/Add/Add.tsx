@@ -1,5 +1,5 @@
 import moment from 'moment';
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import './Add.scss';
 
 export default function(props: any) {
@@ -11,26 +11,54 @@ export default function(props: any) {
     date: moment().format("YYYY-MM-d")
   });
 
+  const idInput = useRef<any>();
+  const nameInput = useRef<any>();
+
   const [loading, setLoading] = useState<boolean>(false);
 
   const form = useRef<any>();
+
+  useEffect(() => {
+    if (props.currentClient && props.update) {
+      nameInput.current.value = props.currentClient.name;
+      idInput.current.value = props.currentClient.id;
+    }
+  }, [props.update])
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
 
     setLoading(true);
+
+    if (!props.update) {
+
+      await fetch('http://localhost:4000/clients', {
+        method: 'POST',
+        body: JSON.stringify(client),
+        headers: { 'Content-Type': 'application/json' }
+      })
+    } else {
+      try {
+        await fetch(`http://localhost:4000/clients/${props.currentClient.id}`, {
+          method: 'PUT',
+          body: JSON.stringify(client),
+          headers: { 'Content-Type': 'application/json' }
+        });
+      } catch (error) {
+        throw (error);
+      }
+    }
     
-    const res = await fetch('http://localhost:4000/clients', {
-      method: 'POST',
-      body: JSON.stringify(client),
-      headers: { 'Content-Type': 'application/json' }
-    })
-    const data = await res.json();
     
     setLoading(false);
     form.current.reset();
-    props.modalEvents();
+    handleClose();
     props.handleEvent();
+  }
+
+  const handleClose = () => {
+    form.current.reset();
+    !props.update ? props.modalEvents() : props.modalUpdate();
   }
   
   const handleChange = (e: any) => setClient({...client, [e.target.name]: e.target.value });
@@ -39,16 +67,16 @@ export default function(props: any) {
   return (
     <div className={`add-container ${!props.init ? 'preload' : ''} ${props.toggle ? 'show' : 'hide'}`}>
       <div className='form-wrapper'>
-        <h2 className='title'>Add New Client</h2>
-        <i onClick={props.modalEvents} className='fal fa-times close'></i>
+        <h2 className='title'>{props.update ? 'Update Client' : 'Add New Client'}</h2>
+        <i onClick={handleClose} className='fal fa-times close'></i>
         <form ref={form} onSubmit={handleSubmit} className='form'>
           <div className='wrapper'>
             <label htmlFor="id">Identification card: </label>
-            <input onChange={handleChange} type="text" id='id' name="id" placeholder='Id card' required />
+            <input ref={idInput} onChange={handleChange} type="text" id='id' name="id" placeholder='Id card' required />
           </div>
           <div className='wrapper'>
             <label htmlFor="name">Name: </label>
-            <input onChange={handleChange} type="text" id='name' name='name' placeholder='Name' required />
+            <input ref={nameInput} onChange={handleChange} type="text" id='name' name='name' placeholder='Name' required />
           </div>
           <div className='wrapper'>
             <label htmlFor="payment">Select payment: </label>

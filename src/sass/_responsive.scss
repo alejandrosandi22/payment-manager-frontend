@@ -5,3 +5,11 @@
     }
   }
 }
+
+@mixin singleClient {
+  @media (max-width: 1024px) {
+    .client-container {
+      padding: 5rem;
+    }
+  }
+}
