@@ -19,7 +19,7 @@ export default function Item(props: any) {
         <h4 className='days-left'>{ daysLeft }</h4>
       </div>
       <div className='actions'>
-        <button className='button edit'><i className='fas fa-edit'></i></button>
+        <button onClick={() => props.modalUpdate(props)} className='button edit'><i className='fas fa-edit'></i></button>
         <button onClick={() => props.handleDelete(props.id)} className='button delete'><i className='fas fa-trash-alt'></i></button>
       </div>
     </div>

@@ -18,7 +18,7 @@ export default function ClientsList(props: any) {
       return res(clients);
     }).then((clients: any) => {
       setListClients(clients.current.map((client: clientType) => {
-      return <Item key={client.id} id={client.id} name={client.name} date={client.date} payment={client.payment} handleDelete={handleDelete} />
+      return <Item key={client.id} id={client.id} name={client.name} date={client.date} payment={client.payment} handleDelete={handleDelete} modalUpdate={props.modalUpdate} />
     }))
    })
   }, [props.eventEmitted]);
@@ -42,7 +42,7 @@ export default function ClientsList(props: any) {
     }))
 
     setFindedClients(findedClients = findedClients.map((client: clientType) => {
-      return <Item key={client.id} id={client.id} name={client.name} date={client.date} payment={client.payment} handleDelete={handleDelete} />
+      return <Item key={client.id} id={client.id} name={client.name} date={client.date} payment={client.payment} handleDelete={handleDelete} modalUpdate={props.modalUpdate} />
     }))
   }
 
