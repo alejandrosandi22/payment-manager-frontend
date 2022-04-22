@@ -1,5 +1,5 @@
 import moment from 'moment';
-import React, { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import './Add.scss';
 
 export default function(props: any) {
@@ -8,7 +8,7 @@ export default function(props: any) {
     id: '',
     name: '',
     payment: '',
-    date: moment().format("YYYY-MM-d")
+    date: moment().format("YYYY-MM-DD")
   });
 
   const idInput = useRef<any>();
@@ -32,14 +32,15 @@ export default function(props: any) {
 
     if (!props.update) {
 
-      await fetch('http://localhost:4000/clients', {
+      await fetch('https://gym-customer-payment-manager.herokuapp.com/clients', {
         method: 'POST',
         body: JSON.stringify(client),
         headers: { 'Content-Type': 'application/json' }
       })
     } else {
+      console.log('client data: ', client)
       try {
-        await fetch(`http://localhost:4000/clients/${props.currentClient.id}`, {
+        await fetch(`https://gym-customer-payment-manager.herokuapp.com/clients/${props.currentClient.id}`, {
           method: 'PUT',
           body: JSON.stringify(client),
           headers: { 'Content-Type': 'application/json' }
@@ -72,15 +73,15 @@ export default function(props: any) {
         <form ref={form} onSubmit={handleSubmit} className='form'>
           <div className='wrapper'>
             <label htmlFor="id">Identification card: </label>
-            <input ref={idInput} onChange={handleChange} type="text" id='id' name="id" placeholder='Id card' required />
+            <input ref={idInput} value={client.id} onChange={handleChange} type="text" id='id' name="id" placeholder='Id card' required />
           </div>
           <div className='wrapper'>
             <label htmlFor="name">Name: </label>
-            <input ref={nameInput} onChange={handleChange} type="text" id='name' name='name' placeholder='Name' required />
+            <input ref={nameInput} value={client.name} onChange={handleChange} type="text" id='name' name='name' placeholder='Name' required />
           </div>
           <div className='wrapper'>
             <label htmlFor="payment">Select payment: </label>
-            <select onChange={handleChange} name="payment" id="payment" required>
+            <select value={client.payment} onChange={handleChange} name="payment" id="payment" required>
               <option value="null">Select payment</option>
               <option value="10000">Month</option>
               <option value="5000">Fortnight</option>

@@ -1,25 +1,24 @@
 import moment from "moment";
 
-function format(setValue: any, properties: any) {
-  const updateDay = moment(properties.date).format("YYYY-MM-d");
-  const today = moment(new Date()).format("YYYY-MM-d");
+export function format(setValue: any, properties: any) {
+  const updateDay = moment(properties.date);
+  const today = moment();
 
-  const diff: number = moment(today).diff(moment(updateDay), 'month', true);
-  
+  const diff: any = today.diff(updateDay, 'days', true);
+  let diffMath: number = (Math.trunc(diff));
+
   if (properties.payment === 10000) {
-    if ((30 - Math.trunc(diff * 30)) <= 0) return setValue('Expired monthly payment');
-    else return setValue(`${30 - Math.trunc(diff * 30)} days`);
+    if (diffMath >= 30) return setValue('Expired payment');
+    return setValue(`${30 - diffMath} days`);
   }
-
+  
   if (properties.payment === 5000) {
-    if (Math.trunc(diff * 30) > 16) return setValue('Expired monthly payment');
-    else return setValue(`${14 - Math.trunc(diff * 30)} days`);
+    if (diffMath >= 15) return setValue('Expired payment');
+    return setValue(`${15 - diffMath} days`);
   }
-
+  
   if (properties.payment === 3000) {
-    if (Math.trunc(diff * 30) > 8) return setValue('Expired monthly payment');
-    else return setValue(`${7 - Math.trunc(diff * 30)} days`);
+    if (diffMath >= 8) return setValue('Expired payment');
+    return setValue(`${8 - diffMath} days`);
   }
 }
-
-export {format}

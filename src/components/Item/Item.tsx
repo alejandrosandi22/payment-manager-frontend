@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import './Item.scss';
-import moment from 'moment';
 import { Link } from 'react-router-dom';
 import { format } from '../../services/daysLeft';
 

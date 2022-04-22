@@ -1,10 +1,9 @@
 import moment from 'moment';
-import React, { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import './Client.scss';
 
 import { format } from '../../services/daysLeft';
-
 
 function ClientBox(props: any) {
 
@@ -16,11 +15,11 @@ function ClientBox(props: any) {
 
   return(
     <div className='client'>
-    <h3 className='name'>{ props.name }</h3>
-    <h4 className='days-left'>Days left: { daysLeft }</h4>
-    <h4 className='last-update-date'>Last update: { moment(props.date).format("YYYY/MM/DD") }</h4>
-    <h4 className='last-update-payment'>Last payment: ₡{ props.payment }</h4>
-</div>
+      <h3 className='name'>{ props.name }</h3>
+      <h4 className='days-left'>Days left: { daysLeft }</h4>
+      <h4 className='last-update-date'>Last update: { moment(props.date).format("YYYY/MM/DD") }</h4>
+      <h4 className='last-update-payment'>Last payment: ₡{ props.payment }</h4>
+    </div>
   );
 }
 
@@ -35,7 +34,7 @@ export default function Client() {
 
   useEffect(() => {
     new Promise( async (res: any) => {
-       const response: Response = await fetch('http://localhost:4000/clients');
+       const response: Response = await fetch('https://gym-customer-payment-manager.herokuapp.com/clients');
        clients.current = await response.json();
        return res(clients);
 
