@@ -26,6 +26,33 @@
       }
     }
   }
+  .loading-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    width: 6rem;
+    height: 6rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    i {
+      color: #fff;
+      font-size: 4rem;
+      animation: spinner 1s infinite;
+    }
+  }
 }
 
 @include responsive.list();
+
+@keyframes spinner {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
