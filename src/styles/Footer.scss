@@ -1,0 +1,33 @@
+footer {
+  background: #1c1c1c;
+  position: relative;
+  height: 7rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  ul {
+    width: 200px;
+    display: flex;
+    list-style: none;
+    justify-content: space-around;
+    li {
+      cursor: pointer;
+      a {
+        &:hover {
+          filter: brightness(0.8);
+        }
+        i {
+          font-size: clamp(1rem, 6vw, 1.2rem);
+          color: var(--font-color);
+        }
+      }
+    }
+  }
+  p {
+    text-align: center;
+    display: block;
+    font-size: 1rem;
+    color: var(--font-color);
+  }
+}
