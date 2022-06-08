@@ -1,0 +1,51 @@
+.serach-form {
+  grid-area: search;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  width: 100%;
+  height: 100%;
+  padding: 20px;
+  position: relative;
+  .search-input {
+    width: 200px;
+    height: 20px;
+    padding: 5px;
+    border: none;
+    border-bottom: 1px solid var(--font-color-hover);
+    background: transparent;
+    color: #f6f6f6;
+    font-size: 1rem;
+    font-weight: 300;
+    &:focus-visible {
+      outline: none;
+      border-bottom: 1px solid var(--font-color);
+    }
+  }
+  .search-button {
+    background: transparent;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    i {
+      font-size: 1rem;
+      color: var(--font-color-hover);
+      margin: 0 0 0 10px;
+      cursor: pointer;
+      &:hover {
+        color: var(--font-color);
+      }
+      &:active {
+        transform: scale(0.95);
+      }
+    }
+  }
+}
+
+@media (max-width: 720px) {
+  .serach-form {
+    .search-input {
+      width: 100%;
+    }
+  }
+}
