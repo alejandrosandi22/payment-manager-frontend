@@ -1,12 +1,12 @@
 import React, { useEffect, useRef, useState } from "react";
-import useAppDispatch from "../hooks/useDispatch";
-import useAppSelector from "../hooks/useSelector";
-import { ClientsType } from "../types";
-import { setModal } from "../store/reducers/modalReducer";
-import "../styles/Modal.scss";
+import useAppDispatch from "hooks/useDispatch";
+import useAppSelector from "hooks/useSelector";
+import { ClientsType } from "types";
+import { setModal } from "store/reducers/modalReducer";
 import Loading from "./loading";
-import { setRefetch } from "../store/reducers/refetchReducer";
+import { setRefetch } from "store/reducers/refetchReducer";
 import { error, success } from "toastr";
+import "styles/Modal.scss";
 
 export default function Modal() {
   const dialog = useRef<any>(null);
@@ -141,13 +141,18 @@ export default function Modal() {
           </select>
           <div>
             <button
+              disabled={isLoading}
               className="action-button"
               onClick={handleClose}
               type="button"
             >
               Cancel
             </button>
-            <button className="action-button" type="submit">
+            <button
+              disabled={isLoading}
+              className="action-button"
+              type="submit"
+            >
               {modal.type === "add" ? "Add" : "Update"}
               {isLoading && <Loading />}
             </button>
