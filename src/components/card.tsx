@@ -1,10 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import useAppDispatch from "../hooks/useDispatch";
-import useDaysLeft from "../hooks/useDaysLeft";
-import { setClient } from "../store/reducers/clientReducer";
-import { setModal } from "../store/reducers/modalReducer";
-import "../styles/Card.scss";
+import useAppDispatch from "hooks/useDispatch";
+import useDaysLeft from "hooks/useDaysLeft";
+import { setClient } from "store/reducers/clientReducer";
+import { setModal } from "store/reducers/modalReducer";
+import "styles/Card.scss";
 import { success } from "toastr";
 
 function Card(props: any) {

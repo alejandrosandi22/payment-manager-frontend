@@ -1,13 +1,13 @@
 import React from "react";
-import "../styles/ClientCard.scss";
+import "styles/ClientCard.scss";
 import moment from "moment";
-import useDaysLeft from "../hooks/useDaysLeft";
-import { ClientsType } from "../types";
-import useAppDispatch from "../hooks/useDispatch";
-import { setModal } from "../store/reducers/modalReducer";
-import { setClient } from "../store/reducers/clientReducer";
+import useDaysLeft from "hooks/useDaysLeft";
+import useAppDispatch from "hooks/useDispatch";
+import { setModal } from "store/reducers/modalReducer";
+import { setClient } from "store/reducers/clientReducer";
 import { useNavigate } from "react-router-dom";
 import { success } from "toastr";
+import { ClientsType } from "types";
 
 function paymentFormating(payment: number) {
   let paymentFormat: string = "";
@@ -64,8 +64,7 @@ export default function ClientCard({ id, name, payment, date }: ClientsType) {
           <span>Days left:</span> {daysLeft}
         </li>
         <li>
-          <span>Last update:</span>{" "}
-          {moment(date).format("YYYY-MM-DD hh:mm:ss A")}
+          <span>Last update:</span> {moment(date).format("YYYY-MM-DD")}
         </li>
         <li>
           <span>Last payment:</span> {paymentFormating(payment)}

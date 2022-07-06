@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import useAppDispatch from "../hooks/useDispatch";
-import useAppSelector from "../hooks/useSelector";
-import { setSearch } from "../store/reducers/searchReducer";
-import { ClientsType } from "../types";
-import "../styles/Search.scss";
+import useAppDispatch from "hooks/useDispatch";
+import useAppSelector from "hooks/useSelector";
+import { setSearch } from "store/reducers/searchReducer";
+import { ClientsType } from "types";
+import "styles/Search.scss";
 
 export default function Search() {
   const { list, search } = useAppSelector((state) => state);

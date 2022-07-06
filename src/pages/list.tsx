@@ -1,29 +1,23 @@
-import Card from "../components/card";
+import Card from "components/card";
 import React, { useCallback, useEffect, useState } from "react";
-import { ClientsType } from "../types";
-import "../styles/List.scss";
-import useAppSelector from "../hooks/useSelector";
-import useAppDispatch from "../hooks/useDispatch";
-import { setList } from "../store/reducers/listReducer";
-import Loading from "../components/loading";
-import useAxios from "axios-hooks";
+import useAppSelector from "hooks/useSelector";
+import useAppDispatch from "hooks/useDispatch";
+import { setList } from "store/reducers/listReducer";
+import Loading from "components/loading";
+import useFetch from "hooks/useFetch";
+import { ClientsType } from "types";
+import "styles/List.scss";
 
 function List() {
   const dispatch = useAppDispatch();
   const [noResults, setNoResults] = useState<boolean>(false);
-  const [loadClients, setLoadClients] = useState<ClientsType[]>([
-    {
-      id: 0,
-      name: "",
-      payment: 0,
-    },
-  ]);
+  const [loadClients, setLoadClients] = useState<ClientsType[]>([]);
   const {
     list,
     search,
     refetch: refetchReducer,
   } = useAppSelector((state) => state);
-  const [{ data, loading }, refetch] = useAxios(
+  const { data, loading, refetch } = useFetch<ClientsType[]>(
     "https://payment-manager-api.alejandrosandi.com/clients"
   );
 
